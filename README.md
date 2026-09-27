@@ -87,6 +87,7 @@ The system provides **JWT authentication, role-based access control, employee ma
                   └───────────────────────┘
 
 ## 📂 Project Structure
+
 attendance-geofencing/
 │
 ├── src/
@@ -119,26 +120,29 @@ attendance-geofencing/
 
 The application uses JWT (JSON Web Token) authentication to secure REST APIs.
 
-ADMIN
+👑 ADMIN
+
 Admin users can:
 
-Manage employees
-Manage departments
-Manage office locations
-View attendance reports
-Update attendance records
-Delete attendance records
+-Manage employees
+-Manage departments
+-Manage office locations
+-View attendance reports
+-Update attendance records
+-Delete attendance records
 
 👤 EMPLOYEE
+
 Employee users can:
 
-Login securely
-View their attendance
-Check in
-Check out
-Access the employee dashboard
+-Login securely
+-View their attendance
+-Check in
+-Check out
+-Access the employee dashboard
 
 ## Authentication Flow
+
 Login
   ↓
 Validate Email & Password
@@ -163,10 +167,11 @@ Latitude    : 12.9716
 Longitude   : 77.5946
 Radius      : 150 meters
 
-The active office location is configured using:
+** The active office location is configured using:
 office.location.id=1
 
 ## Geofencing Flow
+
 Employee Location
        │
        ▼
@@ -181,8 +186,11 @@ Compare with Office Radius
        │               │
        ▼               ▼
     Allowed          Rejected
+
 🕘 Attendance Flow
+
 Check-In
+
 Login
   ↓
 JWT Authentication
@@ -197,7 +205,8 @@ Check Duplicate Attendance
   ↓
 Record Attendance
 
-##Check-Out
+## Check-Out
+
 Check-Out
   ↓
 Validate Employee
@@ -213,61 +222,63 @@ Complete Attendance
 ⏰ Attendance Rules
 
 Rule	Condition:
--Check-In	Allowed until 10:30 AM
--Check-Out	Allowed after 5:00 PM
--Duplicate Check-In	Not allowed
--Duplicate Check-Out	Not allowed
--Geofencing	Employee must be within configured office radius
+.Check-In	Allowed until 10:30 AM
+.Check-Out	Allowed after 5:00 PM
+.Duplicate Check-In	Not allowed
+.Duplicate Check-Out	Not allowed
+.Geofencing	Employee must be within configured office radius
 
-## 📊 Attendance Reports
+📊 Attendance Reports
 
 The dashboard provides attendance reporting features such as:
 
 Today's attendance
--Attendance by selected date
--Employee name
--Employee email
--Check-in time
--Check-out time
--Attendance status
--Total employees
--Pending check-outs
--Office locations
+.Attendance by selected date
+.Employee name
+.Employee email
+.Check-in time
+.Check-out time
+.Attendance status
+.Total employees
+.Pending check-outs
+.Office locations
 
 ## 🔗 REST API Endpoints
 
-|  Method  | Endpoint                             |     Access    | Description                        |
-| :------: | ------------------------------------ | :-----------: | ---------------------------------- |
-|  `POST`  | `/auth/login`                        |     Public    | Login and receive JWT token        |
-|   `GET`  | `/employees`                         | Authenticated | Get all employees                  |
-|   `GET`  | `/employees/{id}`                    | Authenticated | Get employee by ID                 |
-|  `POST`  | `/employees`                         |     ADMIN     | Create a new employee              |
-|   `PUT`  | `/employees/{id}`                    |     ADMIN     | Update employee details            |
-| `DELETE` | `/employees/{id}`                    |     ADMIN     | Delete an employee                 |
-|   `GET`  | `/departments`                       | Authenticated | Get all departments                |
-|   `GET`  | `/departments/{id}`                  | Authenticated | Get department by ID               |
-|  `POST`  | `/departments`                       |     ADMIN     | Create a department                |
-|   `PUT`  | `/departments/{id}`                  |     ADMIN     | Update a department                |
-| `DELETE` | `/departments/{id}`                  |     ADMIN     | Delete a department                |
-|   `GET`  | `/office-locations`                  | Authenticated | Get office locations               |
-|   `GET`  | `/office-locations/{id}`             | Authenticated | Get office location by ID          |
-|  `POST`  | `/office-locations`                  |     ADMIN     | Create an office location          |
-|   `PUT`  | `/office-locations/{id}`             |     ADMIN     | Update an office location          |
-| `DELETE` | `/office-locations/{id}`             |     ADMIN     | Delete an office location          |
-|   `GET`  | `/attendances`                       | Authenticated | Get attendance records             |
-|   `GET`  | `/attendances/{id}`                  | Authenticated | Get attendance by ID               |
-|  `POST`  | `/attendances/check-in`              | Authenticated | Check in for attendance            |
-|  `POST`  | `/attendances/check-out`             | Authenticated | Check out from attendance          |
-|   `GET`  | `/attendances/employee/{employeeId}` | Authenticated | Get attendance for an employee     |
-|   `GET`  | `/attendances/today`                 |     ADMIN     | Get today's attendance             |
-|   `GET`  | `/attendances/date/{date}`           |     ADMIN     | Get attendance for a selected date |
-|   `PUT`  | `/attendances/{id}`                  |     ADMIN     | Update attendance record           |
-| `DELETE` | `/attendances/{id}`                  |     ADMIN     | Delete attendance record           |
+|  Method  | Endpoint                             |     Access    | Description                              |
+| :------: | :----------------------------------- | :-----------: | :--------------------------------------- |
+|  `POST`  | `/auth/login`                        |     Public    | Authenticate user and generate JWT token |
+|   `GET`  | `/employees`                         | Authenticated | Retrieve all employees                   |
+|   `GET`  | `/employees/{id}`                    | Authenticated | Retrieve employee by ID                  |
+|  `POST`  | `/employees`                         |     ADMIN     | Create a new employee                    |
+|   `PUT`  | `/employees/{id}`                    |     ADMIN     | Update employee details                  |
+| `DELETE` | `/employees/{id}`                    |     ADMIN     | Delete an employee                       |
+|   `GET`  | `/departments`                       | Authenticated | Retrieve all departments                 |
+|   `GET`  | `/departments/{id}`                  | Authenticated | Retrieve department by ID                |
+|  `POST`  | `/departments`                       |     ADMIN     | Create a new department                  |
+|   `PUT`  | `/departments/{id}`                  |     ADMIN     | Update department details                |
+| `DELETE` | `/departments/{id}`                  |     ADMIN     | Delete a department                      |
+|   `GET`  | `/office-locations`                  | Authenticated | Retrieve all office locations            |
+|   `GET`  | `/office-locations/{id}`             | Authenticated | Retrieve office location by ID           |
+|  `POST`  | `/office-locations`                  |     ADMIN     | Create a new office location             |
+|   `PUT`  | `/office-locations/{id}`             |     ADMIN     | Update office location details           |
+| `DELETE` | `/office-locations/{id}`             |     ADMIN     | Delete an office location                |
+|   `GET`  | `/attendances`                       | Authenticated | Retrieve all attendance records          |
+|   `GET`  | `/attendances/{id}`                  | Authenticated | Retrieve attendance by ID                |
+|  `POST`  | `/attendances/check-in`              | Authenticated | Check in for attendance                  |
+|  `POST`  | `/attendances/check-out`             | Authenticated | Check out from attendance                |
+|   `GET`  | `/attendances/employee/{employeeId}` | Authenticated | Retrieve attendance for an employee      |
+|   `GET`  | `/attendances/today`                 |     ADMIN     | Retrieve today's attendance              |
+|   `GET`  | `/attendances/date/{date}`           |     ADMIN     | Retrieve attendance for a selected date  |
+|   `PUT`  | `/attendances/{id}`                  |     ADMIN     | Update an attendance record              |
+| `DELETE` | `/attendances/{id}`                  |     ADMIN     | Delete an attendance record              |
+
 
 
 ## 🗄️ Database Setup
 
 Create the MySQL database:
+
 CREATE DATABASE employee_attendance;
 
 The application uses Hibernate to automatically create and update tables:
@@ -277,17 +288,22 @@ spring.jpa.hibernate.ddl-auto=update
 ## 🚀 Getting Started
 
 1. Clone the Repository
+
 git clone https://github.com/Harshi-789/Attendance-Geofencing.git
 cd Attendance-Geofencing
 
 2. Open the Project
+
 Import the project into Spring Tool Suite (STS) or Eclipse as an existing Maven project.
 
 3. Create the Database
+
 Open MySQL and run:
+
 CREATE DATABASE employee_attendance;
 
 4. Configure application.properties
+
 Open:
 src/main/resources/application.properties
 
@@ -307,11 +323,13 @@ office.location.id=1
 5. Run the Application
 
 From STS/Eclipse, run:
+
 AttendanceGeofencingApplication.java
 
 Or run:
 
 mvn spring-boot:run
+
 6. Open the Application
 
 Open your browser:
@@ -325,6 +343,7 @@ Login using your registered ADMIN or EMPLOYEE credentials.
 The REST APIs can be tested using Postman.
 
 Testing Flow
+
 1. Login
       ↓
 2. Receive JWT Token
@@ -343,17 +362,18 @@ Authorization: Bearer <JWT_TOKEN>
 ## 🔒 Security
 The application implements:
 
-JWT authentication
-BCrypt password hashing
-Role-based authorization
-Protected REST endpoints
-Employee-specific attendance access
-Global exception handling
-Input validation
-Unauthorized request handling
-Resource-not-found handling
+.JWT authentication
+.BCrypt password hashing
+.Role-based authorization
+.Protected REST endpoints
+.Employee-specific attendance access
+.Global exception handling
+.Input validation
+.Unauthorized request handling
+.Resource-not-found handling
 
-##💻 Dashboard
+💻 Dashboard
+
 The web dashboard provides a centralized interface for:
 
 ┌──────────────────────────────────────┐
