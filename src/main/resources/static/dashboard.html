@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>AttendTrack | Dashboard</title>
+
+	<link rel="stylesheet" href="dashboard.css">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+	<!-- ================= SIDEBAR ================= -->
+
+	<aside class="sidebar" id="sidebar">
+
+		<div class="brand">
+
+			<div class="brand-icon">
+				<i class="fa-solid fa-location-dot"></i>
+			</div>
+
+			<div>
+				<h2>AttendTrack</h2>
+				<span>Smart Attendance</span>
+			</div>
+
+		</div>
+
+		<nav class="sidebar-nav">
+
+			<p class="nav-title">MAIN</p>
+
+			<a href="#dashboard" class="nav-link active" data-section="dashboard">
+
+				<i class="fa-solid fa-chart-pie"></i>
+				<span>Dashboard</span>
+
+			</a>
+
+			<a href="#attendance" class="nav-link" data-section="attendance">
+
+				<i class="fa-solid fa-calendar-check"></i>
+				<span>My Attendance</span>
+
+			</a>
+
+			<a href="#profile" class="nav-link" data-section="profile">
+
+				<i class="fa-solid fa-user"></i>
+				<span>My Profile</span>
+
+			</a>
+
+
+			<!-- ADMIN -->
+
+			<div id="adminNavigation" style="display: none;">
+
+				<p class="nav-title">ADMINISTRATION</p>
+
+				<a href="#employees" class="nav-link" data-section="employees">
+
+					<i class="fa-solid fa-users"></i>
+					<span>Employees</span>
+
+				</a>
+
+				<a href="#departments" class="nav-link" data-section="departments">
+
+					<i class="fa-solid fa-building"></i>
+					<span>Departments</span>
+
+				</a>
+
+				<a href="#offices" class="nav-link" data-section="offices">
+
+					<i class="fa-solid fa-location-crosshairs"></i>
+					<span>Office Locations</span>
+
+				</a>
+
+				<a href="#reports" class="nav-link" data-section="reports">
+
+					<i class="fa-solid fa-chart-column"></i>
+					<span>Reports</span>
+
+				</a>
+
+			</div>
+
+		</nav>
+
+
+		<div class="sidebar-bottom">
+
+			<a href="#" class="nav-link">
+
+				<i class="fa-solid fa-circle-question"></i>
+				<span>Help & Support</span>
+
+			</a>
+
+			<button id="logoutBtn" class="logout-btn">
+
+				<i class="fa-solid fa-right-from-bracket"></i>
+				<span>Logout</span>
+
+			</button>
+
+		</div>
+
+	</aside>
+
+
+	<!-- ================= MOBILE OVERLAY ================= -->
+
+	<div class="mobile-overlay" id="mobileOverlay"></div>
+
+
+	<!-- ================= MAIN CONTENT ================= -->
+
+	<main class="main-content">
+
+		<!-- TOPBAR -->
+
+		<header class="topbar">
+
+			<button class="mobile-menu-btn" id="mobileMenuBtn">
+				<i class="fa-solid fa-bars"></i>
+			</button>
+
+			<div class="topbar-title">
+
+				<h1 id="pageTitle">Dashboard</h1>
+				<p id="currentDate"></p>
+
+			</div>
+
+			<div class="topbar-user">
+
+				<div class="user-info">
+
+					<strong id="topUserName">User</strong>
+					<span id="topUserRole">Employee</span>
+
+				</div>
+
+				<div class="user-avatar" id="topUserAvatar">
+					U
+				</div>
+
+			</div>
+
+		</header>
+
+
+		<!-- ================= DASHBOARD SECTION ================= -->
+
+		<section class="page-section active" id="dashboardSection">
+
+			<div class="welcome-banner">
+
+				<div>
+
+					<span class="welcome-label">
+						WELCOME BACK
+					</span>
+
+					<h2>
+						Good day,
+						<span id="welcomeName">User</span>!
+					</h2>
+
+					<p>
+						Here's what's happening with your attendance today.
+					</p>
+
+				</div>
+
+				<div class="welcome-icon">
+					<i class="fa-solid fa-calendar-check"></i>
+				</div>
+
+			</div>
+
+
+			<!-- STAT CARDS -->
+
+			<div class="stats-grid">
+
+				<div class="stat-card">
+
+					<div class="stat-icon status-icon">
+						<i class="fa-solid fa-circle-check"></i>
+					</div>
+
+					<div>
+
+						<span>Today's Status</span>
+
+						<h3 id="todayStatus">
+							Not Checked In
+						</h3>
+
+					</div>
+
+				</div>
+
+
+				<div class="stat-card">
+
+					<div class="stat-icon checkin-icon">
+						<i class="fa-solid fa-right-to-bracket"></i>
+					</div>
+
+					<div>
+
+						<span>Check-In Time</span>
+
+						<h3 id="checkInTime">
+							--:--
+						</h3>
+
+					</div>
+
+				</div>
+
+
+				<div class="stat-card">
+
+					<div class="stat-icon checkout-icon">
+						<i class="fa-solid fa-right-from-bracket"></i>
+					</div>
+
+					<div>
+
+						<span>Check-Out Time</span>
+
+						<h3 id="checkOutTime">
+							--:--
+						</h3>
+
+					</div>
+
+				</div>
+
+
+				<div class="stat-card">
+
+					<div class="stat-icon location-icon">
+						<i class="fa-solid fa-location-dot"></i>
+					</div>
+
+					<div>
+
+						<span>Location Status</span>
+
+						<h3 id="locationStatus">
+							Checking...
+						</h3>
+
+					</div>
+
+				</div>
+
+			</div>
+
+
+			<!-- ATTENDANCE ACTION + OFFICE -->
+
+			<div class="dashboard-grid">
+
+				<!-- ATTENDANCE ACTION -->
+
+				<div class="content-card attendance-action-card">
+
+					<div class="card-header">
+
+						<div>
+
+							<span class="card-label">
+								TODAY'S ATTENDANCE
+							</span>
+
+							<h3>
+								Attendance Action
+							</h3>
+
+						</div>
+
+						<div class="card-header-icon">
+							<i class="fa-solid fa-clock"></i>
+						</div>
+
+					</div>
+
+					<p class="card-description">
+						Your location will be verified before recording attendance.
+					</p>
+
+					<div class="attendance-buttons">
+
+						<button id="checkInBtn" class="primary-btn">
+
+							<i class="fa-solid fa-right-to-bracket"></i>
+							Check In
+
+						</button>
+
+						<button id="checkOutBtn" class="secondary-btn">
+
+							<i class="fa-solid fa-right-from-bracket"></i>
+							Check Out
+
+						</button>
+
+					</div>
+
+					<div id="attendanceMessage" class="action-message">
+					</div>
+
+				</div>
+
+
+				<!-- OFFICE LOCATION -->
+
+				<div class="content-card office-card">
+
+					<div class="card-header">
+
+						<div>
+
+							<span class="card-label">
+								GEOFENCE
+							</span>
+
+							<h3>
+								Office Location
+							</h3>
+
+						</div>
+
+						<div class="card-header-icon location">
+							<i class="fa-solid fa-location-dot"></i>
+						</div>
+
+					</div>
+
+					<div class="office-map">
+
+						<div class="map-center">
+
+							<div class="map-pulse"></div>
+
+							<i class="fa-solid fa-location-dot"></i>
+
+						</div>
+
+					</div>
+
+					<div class="office-details">
+
+						<div>
+
+							<strong id="officeName">
+								Loading...
+							</strong>
+
+							<span id="officeCoordinates">
+								Location coordinates
+							</span>
+
+						</div>
+
+						<div class="radius-info">
+
+							<i class="fa-solid fa-arrows-left-right"></i>
+
+							<span id="officeRadius">
+								-- m
+							</span>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+
+			<!-- RECENT ATTENDANCE -->
+
+			<div class="content-card">
+
+				<div class="card-header">
+
+					<div>
+
+						<span class="card-label">
+							OVERVIEW
+						</span>
+
+						<h3>
+							Recent Attendance
+						</h3>
+
+					</div>
+
+					<button class="text-btn" data-section="attendance">
+
+						View All
+						<i class="fa-solid fa-arrow-right"></i>
+
+					</button>
+
+				</div>
+
+				<div class="table-wrapper">
+
+					<table>
+
+						<thead>
+
+							<tr>
+								<th>Date</th>
+								<th>Check-In</th>
+								<th>Check-Out</th>
+								<th>Status</th>
+							</tr>
+
+						</thead>
+
+						<tbody id="recentAttendanceBody">
+
+							<tr>
+
+								<td colspan="4" class="empty-row">
+
+									Loading attendance...
+
+								</td>
+
+							</tr>
+
+						</tbody>
+
+					</table>
+
+				</div>
+
+			</div>
+
+		</section>
+
+
+		<!-- ================= MY ATTENDANCE ================= -->
+
+		<section class="page-section" id="attendanceSection">
+
+			<div class="section-heading">
+
+				<div>
+
+					<span class="card-label">
+						ATTENDANCE
+					</span>
+
+					<h2>
+						My Attendance
+					</h2>
+
+					<p>
+						View your complete attendance history.
+					</p>
+
+				</div>
+
+			</div>
+
+			<div class="content-card">
+
+				<div class="table-wrapper">
+
+					<table>
+
+						<thead>
+
+							<tr>
+								<th>Date</th>
+								<th>Check-In</th>
+								<th>Check-Out</th>
+								<th>Status</th>
+							</tr>
+
+						</thead>
+
+						<tbody id="attendanceHistoryBody">
+
+							<tr>
+
+								<td colspan="4" class="empty-row">
+
+									Loading attendance...
+
+								</td>
+
+							</tr>
+
+						</tbody>
+
+					</table>
+
+				</div>
+
+			</div>
+
+		</section>
+
+
+		<!-- ================= PROFILE ================= -->
+
+		<section class="page-section" id="profileSection">
+
+			<div class="section-heading">
+
+				<div>
+
+					<span class="card-label">
+						ACCOUNT
+					</span>
+
+					<h2>
+						My Profile
+					</h2>
+
+					<p>
+						Your employee information.
+					</p>
+
+				</div>
+
+			</div>
+
+			<div class="profile-card content-card">
+
+				<div class="profile-header">
+
+					<div class="large-avatar" id="profileAvatar">
+						U
+					</div>
+
+					<div>
+
+						<h2 id="profileName">
+							User
+						</h2>
+
+						<p id="profileDesignation">
+							Employee
+						</p>
+
+					</div>
+
+				</div>
+
+
+				<div class="profile-grid">
+
+					<div class="profile-item">
+
+						<span>Full Name</span>
+
+						<strong id="profileFullName">
+							--
+						</strong>
+
+					</div>
+
+					<div class="profile-item">
+
+						<span>Email</span>
+
+						<strong id="profileEmail">
+							--
+						</strong>
+
+					</div>
+
+					<div class="profile-item">
+
+						<span>Phone</span>
+
+						<strong id="profilePhone">
+							--
+						</strong>
+
+					</div>
+
+					<div class="profile-item">
+
+						<span>Designation</span>
+
+						<strong id="profileDesignationValue">
+							--
+						</strong>
+
+					</div>
+
+					<div class="profile-item">
+
+						<span>Role</span>
+
+						<strong id="profileRole">
+							--
+						</strong>
+
+					</div>
+
+					<div class="profile-item">
+
+						<span>Status</span>
+
+						<strong id="profileStatus">
+							--
+						</strong>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</section>
+
+
+		<!-- ================= ADMIN EMPLOYEES ================= -->
+
+		<section class="page-section" id="employeesSection">
+
+			<div class="section-heading admin-heading">
+
+				<div>
+
+					<span class="card-label">
+						ADMINISTRATION
+					</span>
+
+					<h2>
+						Employee Management
+					</h2>
+
+					<p>
+						Manage employees, roles, departments and account status.
+					</p>
+
+				</div>
+
+				<button id="addEmployeeBtn" class="primary-btn">
+
+					<i class="fa-solid fa-plus"></i>
+					Add Employee
+
+				</button>
+
+			</div>
+
+
+			<!-- EMPLOYEE SUMMARY -->
+
+			<div class="stats-grid admin-stats">
+
+				<div class="stat-card">
+
+					<div class="stat-icon status-icon">
+						<i class="fa-solid fa-users"></i>
+					</div>
+
+					<div>
+
+						<span>Total Employees</span>
+
+						<h3 id="totalEmployees">
+							0
+						</h3>
+
+					</div>
+
+				</div>
+
+
+				<div class="stat-card">
+
+					<div class="stat-icon location-icon">
+						<i class="fa-solid fa-user-check"></i>
+					</div>
+
+					<div>
+
+						<span>Active Employees</span>
+
+						<h3 id="activeEmployees">
+							0
+						</h3>
+
+					</div>
+
+				</div>
+
+
+				<div class="stat-card">
+
+					<div class="stat-icon checkout-icon">
+						<i class="fa-solid fa-user-slash"></i>
+					</div>
+
+					<div>
+
+						<span>Inactive Employees</span>
+
+						<h3 id="inactiveEmployees">
+							0
+						</h3>
+
+					</div>
+
+				</div>
+
+			</div>
+
+
+			<!-- EMPLOYEE TABLE -->
+
+			<div class="content-card employee-management-card">
+
+				<div class="card-header employee-toolbar">
+
+					<div>
+
+						<span class="card-label">
+							EMPLOYEES
+						</span>
+
+						<h3>
+							Employee Directory
+						</h3>
+
+					</div>
+
+					<div class="employee-search">
+
+						<i class="fa-solid fa-magnifying-glass"></i>
+
+						<input type="text" id="employeeSearch" placeholder="Search employees...">
+
+					</div>
+
+				</div>
+
+				<div class="table-wrapper">
+
+					<table>
+
+						<thead>
+
+							<tr>
+								<th>Employee</th>
+								<th>Email</th>
+								<th>Designation</th>
+								<th>Department</th>
+								<th>Role</th>
+								<th>Status</th>
+								<th>Actions</th>
+							</tr>
+
+						</thead>
+
+						<tbody id="employeesTableBody">
+
+							<tr>
+
+								<td colspan="7" class="empty-row">
+
+									<i class="fa-solid fa-spinner fa-spin"></i>
+									Loading employees...
+
+								</td>
+
+							</tr>
+
+						</tbody>
+
+					</table>
+
+				</div>
+
+			</div>
+
+		</section>
+
+
+		<!-- ================= DEPARTMENTS ================= -->
+
+		<section class="page-section" id="departmentsSection">
+
+			<div class="section-heading admin-heading">
+
+				<div>
+
+					<span class="card-label">
+						ADMINISTRATION
+					</span>
+
+					<h2>
+						Department Management
+					</h2>
+
+					<p>
+						Manage departments in your organization.
+					</p>
+
+				</div>
+
+				<button id="addDepartmentBtn" class="primary-btn">
+
+					<i class="fa-solid fa-plus"></i>
+					Add Department
+
+				</button>
+
+			</div>
+
+
+			<div class="content-card">
+
+				<div class="table-wrapper">
+
+					<table>
+
+						<thead>
+
+							<tr>
+								<th>ID</th>
+								<th>Department Name</th>
+								<th>Actions</th>
+							</tr>
+
+						</thead>
+
+						<tbody id="departmentsTableBody">
+
+							<tr>
+
+								<td colspan="3" class="empty-row">
+
+									Loading departments...
+
+								</td>
+
+							</tr>
+
+						</tbody>
+
+					</table>
+
+				</div>
+
+			</div>
+
+		</section>
+
+
+		<!-- ================= OFFICE LOCATIONS ================= -->
+
+		<section class="page-section" id="officesSection">
+
+			<div class="section-heading admin-heading">
+
+				<div>
+
+					<span class="card-label">
+						GEOFENCING
+					</span>
+
+					<h2>
+						Office Locations
+					</h2>
+
+					<p>
+						Configure office coordinates and geofence radius.
+					</p>
+
+				</div>
+
+				<button id="addOfficeBtn" class="primary-btn">
+
+					<i class="fa-solid fa-plus"></i>
+					Add Office
+
+				</button>
+
+			</div>
+
+
+			<div class="content-card">
+
+				<div class="table-wrapper">
+
+					<table>
+
+						<thead>
+
+							<tr>
+								<th>ID</th>
+								<th>Office</th>
+								<th>Latitude</th>
+								<th>Longitude</th>
+								<th>Radius</th>
+								<th>Actions</th>
+							</tr>
+
+						</thead>
+
+						<tbody id="officesTableBody">
+
+							<tr>
+
+								<td colspan="6" class="empty-row">
+
+									Loading office locations...
+
+								</td>
+
+							</tr>
+
+						</tbody>
+
+					</table>
+
+				</div>
+
+			</div>
+
+		</section>
+
+
+		<!-- ================= ADMIN REPORTS ================= -->
+
+		<section class="page-section" id="reportsSection">
+
+			<div class="section-heading">
+
+				<div>
+
+					<span class="card-label">
+						ANALYTICS
+					</span>
+
+					<h2>
+						Attendance Reports
+					</h2>
+
+					<p>
+						Monitor today's attendance and workforce status.
+					</p>
+
+				</div>
+
+			</div>
+
+
+			<div class="stats-grid">
+
+				<div class="stat-card">
+
+					<div class="stat-icon status-icon">
+						<i class="fa-solid fa-users"></i>
+					</div>
+
+					<div>
+
+						<span>Total Employees</span>
+
+						<h3 id="reportTotalEmployees">
+							0
+						</h3>
+
+					</div>
+
+				</div>
+
+
+				<div class="stat-card">
+
+					<div class="stat-icon location-icon">
+						<i class="fa-solid fa-user-check"></i>
+					</div>
+
+					<div>
+
+						<span>Present Today</span>
+
+						<h3 id="reportPresentToday">
+							0
+						</h3>
+
+					</div>
+
+				</div>
+
+
+				<div class="stat-card">
+
+					<div class="stat-icon checkout-icon">
+						<i class="fa-solid fa-clock"></i>
+					</div>
+
+					<div>
+
+						<span>Pending Checkout</span>
+
+						<h3 id="reportPendingCheckout">
+							0
+						</h3>
+
+					</div>
+
+				</div>
+
+
+				<div class="stat-card">
+
+					<div class="stat-icon checkin-icon">
+						<i class="fa-solid fa-location-dot"></i>
+					</div>
+
+					<div>
+
+						<span>Office Locations</span>
+
+						<h3 id="reportOfficeLocations">
+							0
+						</h3>
+
+					</div>
+
+				</div>
+
+			</div>
+
+
+			<div class="content-card">
+
+				<div class="card-header">
+
+					<div>
+
+						<span class="card-label">
+							ATTENDANCE REPORT
+						</span>
+
+						<h3 id="reportTitle">
+							Today's Attendance
+						</h3>
+
+					</div>
+
+					<span id="reportDate"></span>
+
+				</div>
+
+
+				<!-- REPORT FILTER -->
+
+				<div class="report-filter">
+
+					<!-- DATE -->
+
+					<div class="report-filter-field">
+
+						<label for="reportDatePicker">
+							<i class="fa-solid fa-calendar-days"></i>
+							Select Date
+						</label>
+
+						<input type="date" id="reportDatePicker">
+
+					</div>
+
+
+					<!-- EMPLOYEE -->
+
+					<div class="report-filter-field">
+
+						<label for="reportEmployeeFilter">
+							<i class="fa-solid fa-user"></i>
+							Select Employee
+						</label>
+
+						<select id="reportEmployeeFilter">
+
+							<option value="">
+								All Employees
+							</option>
+
+						</select>
+
+					</div>
+
+
+					<!-- VIEW REPORT -->
+
+					<button type="button" id="viewReportBtn" class="primary-btn">
+
+						<i class="fa-solid fa-magnifying-glass"></i>
+						View Report
+
+					</button>
+
+				</div>
+
+
+				<!-- REPORT TABLE -->
+
+				<div class="table-wrapper">
+
+					<table>
+
+						<thead>
+
+							<tr>
+								<th>Employee</th>
+								<th>Check-In</th>
+								<th>Check-Out</th>
+								<th>Status</th>
+							</tr>
+
+						</thead>
+
+						<tbody id="todayReportBody">
+
+							<tr>
+
+								<td colspan="4" class="empty-row">
+
+									Loading report...
+
+								</td>
+
+							</tr>
+
+						</tbody>
+
+					</table>
+
+				</div>
+
+			</div>
+
+		</section>
+
+	</main>
+
+
+	<!-- ====================================================== -->
+	<!-- ================= ADD/EDIT EMPLOYEE MODAL ============ -->
+	<!-- ====================================================== -->
+
+	<div class="modal-overlay" id="employeeModal">
+
+		<div class="modal">
+
+			<div class="modal-header">
+
+				<div>
+
+					<span class="card-label">
+						EMPLOYEE
+					</span>
+
+					<h2 id="employeeModalTitle">
+						Add Employee
+					</h2>
+
+				</div>
+
+				<button type="button" class="modal-close" id="closeEmployeeModal">
+
+					<i class="fa-solid fa-xmark"></i>
+
+				</button>
+
+			</div>
+
+
+			<form id="employeeForm">
+
+				<input type="hidden" id="employeeId">
+
+
+				<div class="form-grid">
+
+
+					<!-- NAME -->
+
+					<div class="form-group">
+
+						<label for="employeeName">
+							Full Name
+						</label>
+
+						<div class="input-wrapper">
+
+							<i class="fa-solid fa-user"></i>
+
+							<input type="text" id="employeeName" placeholder="Enter full name" required>
+
+						</div>
+
+					</div>
+
+
+					<!-- EMAIL -->
+
+					<div class="form-group">
+
+						<label for="employeeEmail">
+							Email
+						</label>
+
+						<div class="input-wrapper">
+
+							<i class="fa-solid fa-envelope"></i>
+
+							<input type="email" id="employeeEmail" placeholder="employee@example.com" required>
+
+						</div>
+
+					</div>
+
+
+					<!-- PASSWORD -->
+
+					<div class="form-group">
+
+						<label for="employeePassword">
+							Password
+						</label>
+
+						<div class="input-wrapper">
+
+							<i class="fa-solid fa-lock"></i>
+
+							<input type="password" id="employeePassword" placeholder="Enter password">
+
+						</div>
+
+						<small id="passwordHint">
+							Required when creating an employee.
+						</small>
+
+					</div>
+
+
+					<!-- PHONE -->
+
+					<div class="form-group">
+
+						<label for="employeePhone">
+							Phone
+						</label>
+
+						<div class="input-wrapper">
+
+							<i class="fa-solid fa-phone"></i>
+
+							<input type="tel" id="employeePhone" placeholder="Enter phone number">
+
+						</div>
+
+					</div>
+
+
+					<!-- DESIGNATION -->
+
+					<div class="form-group">
+
+						<label for="employeeDesignation">
+							Designation
+						</label>
+
+						<div class="input-wrapper">
+
+							<i class="fa-solid fa-briefcase"></i>
+
+							<input type="text" id="employeeDesignation" placeholder="Software Engineer" required>
+
+						</div>
+
+					</div>
+
+
+					<!-- DEPARTMENT -->
+
+					<div class="form-group">
+
+						<label for="employeeDepartment">
+							Department
+						</label>
+
+						<div class="input-wrapper select-wrapper">
+
+							<i class="fa-solid fa-building"></i>
+
+							<select id="employeeDepartment">
+
+								<option value="">
+									Select Department
+								</option>
+
+							</select>
+
+						</div>
+
+					</div>
+
+
+					<!-- ROLE -->
+
+					<div class="form-group">
+
+						<label for="employeeRole">
+							Role
+						</label>
+
+						<div class="input-wrapper select-wrapper">
+
+							<i class="fa-solid fa-shield-halved"></i>
+
+							<select id="employeeRole" required>
+
+								<option value="EMPLOYEE">
+									Employee
+								</option>
+
+								<option value="ADMIN">
+									Admin
+								</option>
+
+							</select>
+
+						</div>
+
+					</div>
+
+
+					<!-- STATUS -->
+
+					<div class="form-group">
+
+						<label for="employeeStatus">
+							Status
+						</label>
+
+						<div class="input-wrapper select-wrapper">
+
+							<i class="fa-solid fa-circle-check"></i>
+
+							<select id="employeeStatus" required>
+
+								<option value="ACTIVE">
+									Active
+								</option>
+
+								<option value="INACTIVE">
+									Inactive
+								</option>
+
+							</select>
+
+						</div>
+
+					</div>
+
+				</div>
+
+
+				<div id="employeeFormMessage" class="form-message">
+				</div>
+
+
+				<div class="modal-footer">
+
+					<button type="button" class="secondary-btn" id="cancelEmployeeBtn">
+
+						Cancel
+
+					</button>
+
+					<button type="submit" class="primary-btn" id="saveEmployeeBtn">
+
+						<i class="fa-solid fa-floppy-disk"></i>
+						Save Employee
+
+					</button>
+
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+
+	<!-- ====================================================== -->
+	<!-- ================= DELETE CONFIRMATION ================ -->
+	<!-- ====================================================== -->
+
+	<div class="modal-overlay" id="deleteEmployeeModal">
+
+		<div class="modal small-modal">
+
+			<div class="delete-icon">
+				<i class="fa-solid fa-trash"></i>
+			</div>
+
+			<h2>
+				Delete Employee?
+			</h2>
+
+			<p>
+				Are you sure you want to delete
+				<strong id="deleteEmployeeName">
+					this employee
+				</strong>?
+			</p>
+
+			<p class="warning-text">
+				This action cannot be undone.
+			</p>
+
+			<div class="modal-footer">
+
+				<button type="button" class="secondary-btn" id="cancelDeleteBtn">
+
+					Cancel
+
+				</button>
+
+				<button type="button" class="danger-btn" id="confirmDeleteBtn">
+
+					<i class="fa-solid fa-trash"></i>
+					Delete Employee
+
+				</button>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<!-- ================= JAVASCRIPT ================= -->
+
+	<script src="dashboard.js"></script>
+
+</body>
+
+</html>

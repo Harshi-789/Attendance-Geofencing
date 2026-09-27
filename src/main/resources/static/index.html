@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>AttendTrack | Employee Attendance</title>
+
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+	<div class="login-container">
+
+		<!-- =========================
+             LEFT SIDE
+        ========================== -->
+
+		<div class="login-left">
+
+			<!-- Logo -->
+			<div class="brand">
+				<div class="brand-icon">A</div>
+				<span>AttendTrack</span>
+			</div>
+
+
+			<!-- Main Content -->
+			<div class="left-content">
+
+				<span class="eyebrow">
+					EMPLOYEE ATTENDANCE SYSTEM
+				</span>
+
+				<h1>
+					Smart Attendance
+					<br>
+					<span>with Geofencing</span>
+				</h1>
+
+				<p>
+					Secure, location-based employee attendance
+					management for modern workplaces.
+				</p>
+
+
+				<!-- Features -->
+
+				<div class="features">
+
+					<!-- Feature 1 -->
+					<div class="feature">
+
+						<div class="feature-icon">
+							✓
+						</div>
+
+						<div>
+							<strong>
+								Secure Authentication
+							</strong>
+
+							<small>
+								JWT-based secure login
+							</small>
+						</div>
+
+					</div>
+
+
+					<!-- Feature 2 -->
+					<div class="feature">
+
+						<div class="feature-icon">
+							⌖
+						</div>
+
+						<div>
+							<strong>
+								Location Based Check-In
+							</strong>
+
+							<small>
+								Check in only inside the office
+							</small>
+						</div>
+
+					</div>
+
+
+					<!-- Feature 3 -->
+					<div class="feature">
+
+						<div class="feature-icon">
+							◷
+						</div>
+
+						<div>
+							<strong>
+								Real-Time Attendance
+							</strong>
+
+							<small>
+								Track attendance easily
+							</small>
+						</div>
+
+					</div>
+
+
+					<!-- Feature 4 -->
+					<div class="feature">
+
+						<div class="feature-icon">
+							▣
+						</div>
+
+						<div>
+							<strong>
+								Smart Management
+							</strong>
+
+							<small>
+								Powerful admin dashboard
+							</small>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+
+			<!-- Footer -->
+
+			<div class="copyright">
+
+				© 2026 AttendTrack
+				<span>•</span>
+				Employee Attendance System
+
+			</div>
+
+		</div>
+
+
+		<!-- =========================
+             RIGHT SIDE
+        ========================== -->
+
+		<div class="login-right">
+
+			<div class="login-card">
+
+
+				<!-- Mobile Logo -->
+
+				<div class="mobile-logo">
+
+					<div class="brand-icon">
+						A
+					</div>
+
+					<span>
+						AttendTrack
+					</span>
+
+				</div>
+
+
+				<!-- Heading -->
+
+				<span class="eyebrow dark">
+					WELCOME BACK
+				</span>
+
+				<h2>
+					Sign in to your account
+				</h2>
+
+				<p class="login-subtitle">
+					Access your attendance dashboard securely.
+				</p>
+
+
+				<!-- Login Form -->
+
+				<form id="loginForm">
+
+
+					<!-- Email -->
+
+					<div class="form-group">
+
+						<label for="email">
+							Email Address
+						</label>
+
+						<input type="email" id="email" name="email" placeholder="Enter your email" autocomplete="email"
+							required>
+
+					</div>
+
+
+					<!-- Password -->
+
+					<div class="form-group">
+
+						<label for="password">
+							Password
+						</label>
+
+						<div class="password-wrapper">
+
+							<input type="password" id="password" name="password" placeholder="Enter your password"
+								autocomplete="current-password" required>
+
+							<button type="button" id="togglePassword" class="password-toggle">
+								Show
+							</button>
+
+						</div>
+
+					</div>
+
+
+					<!-- Remember / Forgot -->
+
+					<div class="form-options">
+
+						<label class="remember">
+
+							<input type="checkbox" id="rememberMe">
+
+							<span>
+								Remember me
+							</span>
+
+						</label>
+
+
+						<a href="#" class="forgot-password" onclick="return false;">
+							Forgot password?
+						</a>
+
+					</div>
+
+
+					<!-- Login Button -->
+
+					<button type="submit" id="loginButton" class="login-button">
+
+						<span id="loginButtonText">
+							Sign In
+						</span>
+
+					</button>
+
+
+					<!-- Login Message -->
+
+					<div id="loginMessage" class="login-message">
+					</div>
+
+				</form>
+
+
+				<!-- Security Message -->
+
+				<div class="security-note">
+
+					<span>🔒</span>
+
+					Your login information is securely protected.
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<!-- JavaScript -->
+
+	<script src="script.js"></script>
+
+</body>
+
+</html>
