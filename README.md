@@ -211,44 +211,59 @@ Validate Existing Attendance
 Complete Attendance
 
 ⏰ Attendance Rules
-Rule	Condition
-Check-In	Allowed until 10:30 AM
-Check-Out	Allowed after 5:00 PM
-Duplicate Check-In	Not allowed
-Duplicate Check-Out	Not allowed
-Geofencing	Employee must be within configured office radius
+
+Rule	Condition:
+-Check-In	Allowed until 10:30 AM
+-Check-Out	Allowed after 5:00 PM
+-Duplicate Check-In	Not allowed
+-Duplicate Check-Out	Not allowed
+-Geofencing	Employee must be within configured office radius
 
 ## 📊 Attendance Reports
 
 The dashboard provides attendance reporting features such as:
 
 Today's attendance
-Attendance by selected date
-Employee name
-Employee email
-Check-in time
-Check-out time
-Attendance status
-Total employees
-Pending check-outs
-Office locations
+-Attendance by selected date
+-Employee name
+-Employee email
+-Check-in time
+-Check-out time
+-Attendance status
+-Total employees
+-Pending check-outs
+-Office locations
 
 ## 🔗 REST API Endpoints
-Method	Endpoint	Access	Description
-POST	/auth/login	Public	Login and receive JWT
-GET	/employees	Authenticated	Get all employees
-POST	/employees	ADMIN	Create employee
-PUT	/employees/{id}	ADMIN	Update employee
-DELETE	/employees/{id}	ADMIN	Delete employee
-GET	/departments	Authenticated	Get departments
-POST	/departments	ADMIN	Create department
-GET	/office-locations	Authenticated	Get office locations
-POST	/office-locations	ADMIN	Create office location
-POST	/attendances/check-in	Authenticated	Check in
-POST	/attendances/check-out	Authenticated	Check out
-GET	/attendances/employee/{id}	Authenticated	Get employee attendance
-GET	/attendances/today	ADMIN	Get today's attendance
-GET	/attendances/date/{date}	ADMIN	Get attendance by date
+
+|  Method  | Endpoint                             |     Access    | Description                        |
+| :------: | ------------------------------------ | :-----------: | ---------------------------------- |
+|  `POST`  | `/auth/login`                        |     Public    | Login and receive JWT token        |
+|   `GET`  | `/employees`                         | Authenticated | Get all employees                  |
+|   `GET`  | `/employees/{id}`                    | Authenticated | Get employee by ID                 |
+|  `POST`  | `/employees`                         |     ADMIN     | Create a new employee              |
+|   `PUT`  | `/employees/{id}`                    |     ADMIN     | Update employee details            |
+| `DELETE` | `/employees/{id}`                    |     ADMIN     | Delete an employee                 |
+|   `GET`  | `/departments`                       | Authenticated | Get all departments                |
+|   `GET`  | `/departments/{id}`                  | Authenticated | Get department by ID               |
+|  `POST`  | `/departments`                       |     ADMIN     | Create a department                |
+|   `PUT`  | `/departments/{id}`                  |     ADMIN     | Update a department                |
+| `DELETE` | `/departments/{id}`                  |     ADMIN     | Delete a department                |
+|   `GET`  | `/office-locations`                  | Authenticated | Get office locations               |
+|   `GET`  | `/office-locations/{id}`             | Authenticated | Get office location by ID          |
+|  `POST`  | `/office-locations`                  |     ADMIN     | Create an office location          |
+|   `PUT`  | `/office-locations/{id}`             |     ADMIN     | Update an office location          |
+| `DELETE` | `/office-locations/{id}`             |     ADMIN     | Delete an office location          |
+|   `GET`  | `/attendances`                       | Authenticated | Get attendance records             |
+|   `GET`  | `/attendances/{id}`                  | Authenticated | Get attendance by ID               |
+|  `POST`  | `/attendances/check-in`              | Authenticated | Check in for attendance            |
+|  `POST`  | `/attendances/check-out`             | Authenticated | Check out from attendance          |
+|   `GET`  | `/attendances/employee/{employeeId}` | Authenticated | Get attendance for an employee     |
+|   `GET`  | `/attendances/today`                 |     ADMIN     | Get today's attendance             |
+|   `GET`  | `/attendances/date/{date}`           |     ADMIN     | Get attendance for a selected date |
+|   `PUT`  | `/attendances/{id}`                  |     ADMIN     | Update attendance record           |
+| `DELETE` | `/attendances/{id}`                  |     ADMIN     | Delete attendance record           |
+
 
 ## 🗄️ Database Setup
 
@@ -260,6 +275,7 @@ The application uses Hibernate to automatically create and update tables:
 spring.jpa.hibernate.ddl-auto=update
 
 ## 🚀 Getting Started
+
 1. Clone the Repository
 git clone https://github.com/Harshi-789/Attendance-Geofencing.git
 cd Attendance-Geofencing
