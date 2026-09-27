@@ -1,107 +1,281 @@
-##Employee Attendance Management System with Geofencing
+# 🕒 Employee Attendance Management System with Geofencing
 
-A Spring Boot-based Employee Attendance Management System that lets employees check in and check out based on their configured office location using geofencing.
-The system provides JWT authentication, role-based access control, employee management, attendance tracking, and reporting through a responsive web dashboard.
+A **Spring Boot-based Employee Attendance Management System** that allows employees to check in and check out based on their configured office location using **geofencing**.
+
+The system provides **JWT authentication, role-based access control, employee management, department management, attendance tracking, and reporting** through a responsive web dashboard.
 
 ---
-## Table of Contents
-Features
-Tech Stack
-Project Structure
-Prerequisites
-Getting Started
-Geofencing
-Attendance Flow
-Contributing
-License
----
-#Features
-Category	Details
 
-Authentication	JWT-based login with role-based access control (Admin, Employee)
-Employee Management	Add, update, and manage employee records
-Department Management	Organize employees by department
-Office Location	Configure one or more office locations for geofencing
-Attendance	Check-in/check-out validated against office geofence and time window
-Time Rules	Check-in allowed until 10:30 AM · Check-out allowed after 5:00 PM
-Duplicate Prevention	Blocks duplicate check-in and check-out for the same day
-Reporting	Attendance history, per-employee history, and today's attendance report
-Reliability	Input validation and global exception handling
-UI	Responsive web dashboard
----
-## 🛠️Tech Stack
-Backend
-Java 21
-Spring Boot 4.1.1
-Spring Security
-JWT
-Spring Data JPA / Hibernate
-Maven
-Database
-MySQL
-Frontend
-HTML, CSS, JavaScript
-Tools
-Spring Tool Suite (STS) / Eclipse
-Postman
-Git & GitHub
+## ✨ Features
+
+| Feature | Description |
+|---|---|
+| 🔐 Authentication | JWT-based authentication with secure login |
+| 👤 Role-Based Access | Separate access for ADMIN and EMPLOYEE roles |
+| 👥 Employee Management | Add, update, view, and manage employee records |
+| 🏢 Department Management | Organize employees by department |
+| 📍 Office Location | Configure office coordinates and geofence radius |
+| 🕘 Attendance | Check-in and check-out with validation |
+| ⏰ Time Rules | Check-in until 10:30 AM and check-out after 5:00 PM |
+| 🚫 Duplicate Prevention | Prevent duplicate attendance for the same day |
+| 📊 Attendance Reports | View today's and date-based attendance reports |
+| 🛡️ Validation | Input validation and global exception handling |
+| 💻 Web Dashboard | Responsive dashboard for attendance management |
+
 ---
 
-## 📂Project Structure
+## 🛠️ Tech Stack
 
-attendance-geofencing
+### Backend
+
+- ☕ Java 21
+- 🌱 Spring Boot 4.1.1
+- 🔐 Spring Security
+- 🎟️ JWT
+- 🗄️ Spring Data JPA
+- ⚙️ Hibernate
+- 📦 Maven
+
+### Database
+
+- 🐬 MySQL
+
+### Frontend
+
+- HTML5
+- CSS3
+- JavaScript
+
+### Tools
+
+- Spring Tool Suite (STS) / Eclipse
+- Postman
+- Git
+- GitHub
+
+---
+
+## 🏗️ System Architecture
+
+```text
+                  ┌───────────────────────┐
+                  │       Frontend        │
+                  │    HTML / CSS / JS    │
+                  └───────────┬───────────┘
+                              │
+                              │ REST API
+                              ▼
+                  ┌───────────────────────┐
+                  │      Controller       │
+                  └───────────┬───────────┘
+                              │
+                              ▼
+                  ┌───────────────────────┐
+                  │       Service         │
+                  │    Business Logic     │
+                  └───────────┬───────────┘
+                              │
+                              ▼
+                  ┌───────────────────────┐
+                  │      Repository       │
+                  │    Spring Data JPA    │
+                  └───────────┬───────────┘
+                              │
+                              ▼
+                  ┌───────────────────────┐
+                  │        MySQL          │
+                  └───────────────────────┘
+
+## 📂 Project Structure
+attendance-geofencing/
 │
-├── src/main/java
-│   └── com.employee.attendance_geofencing
-│       ├── controller
-│       ├── service
-│       ├── repository
-│       ├── entity
-│       ├── dto
-│       ├── security
-│       └── exception
-│
-├── src/main/resources
-│   ├── static
-│   │   ├── index.html
-│   │   ├── style.css
-│   │   ├── script.js
-│   │   ├── dashboard.html
-│   │   ├── dashboard.css
-│   │   └── dashboard.js
-│   │
-│   └── application.properties
+├── src/
+│   └── main/
+│       ├── java/
+│       │   └── com.employee.attendance_geofencing/
+│       │       ├── controller/
+│       │       ├── service/
+│       │       ├── repository/
+│       │       ├── entity/
+│       │       ├── dto/
+│       │       ├── security/
+│       │       └── exception/
+│       │
+│       └── resources/
+│           ├── static/
+│           │   ├── index.html
+│           │   ├── style.css
+│           │   ├── script.js
+│           │   ├── dashboard.html
+│           │   ├── dashboard.css
+│           │   └── dashboard.js
+│           │
+│           └── application.properties
 │
 ├── pom.xml
 └── README.md
-```
----
-## Prerequisites
 
-Make sure you have the following installed before setting up the project:
-Java Development Kit (JDK) 21+
-Maven 3.8+
-MySQL 8.0+
-Spring Tool Suite (STS) or Eclipse (optional, for IDE-based development)
-Postman (optional, for API testing)
----
-## 🚀How to Run
-1. Clone the Repository
-```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
-cd attendance-geofencing
-```
-2. Open the Project
-Open the project in Spring Tool Suite (STS) or Eclipse as an existing Maven project.
+## 🔐 Authentication & Authorization
 
-3. Create the MySQL Database
-```sql
+The application uses JWT (JSON Web Token) authentication to secure REST APIs.
+
+ADMIN
+Admin users can:
+
+Manage employees
+Manage departments
+Manage office locations
+View attendance reports
+Update attendance records
+Delete attendance records
+
+👤 EMPLOYEE
+Employee users can:
+
+Login securely
+View their attendance
+Check in
+Check out
+Access the employee dashboard
+
+## Authentication Flow
+Login
+  ↓
+Validate Email & Password
+  ↓
+Generate JWT Token
+  ↓
+Send JWT with API Requests
+  ↓
+JWT Authentication Filter
+  ↓
+Role-Based Authorization
+  ↓
+Access Protected API
+
+## 📍 Geofencing
+
+The system validates attendance based on the distance between the employee's location and the configured office location.
+
+Office Configuration
+Office Name : Bangalore Main Office
+Latitude    : 12.9716
+Longitude   : 77.5946
+Radius      : 150 meters
+
+The active office location is configured using:
+office.location.id=1
+
+## Geofencing Flow
+Employee Location
+       │
+       ▼
+Calculate Distance
+       │
+       ▼
+Compare with Office Radius
+       │
+       ├───────────────┐
+       ▼               ▼
+   Within Radius   Outside Radius
+       │               │
+       ▼               ▼
+    Allowed          Rejected
+🕘 Attendance Flow
+Check-In
+Login
+  ↓
+JWT Authentication
+  ↓
+Validate Employee
+  ↓
+Validate Check-In Time
+  ↓
+Validate Office Location
+  ↓
+Check Duplicate Attendance
+  ↓
+Record Attendance
+
+##Check-Out
+Check-Out
+  ↓
+Validate Employee
+  ↓
+Validate Check-Out Time
+  ↓
+Validate Office Location
+  ↓
+Validate Existing Attendance
+  ↓
+Complete Attendance
+
+⏰ Attendance Rules
+Rule	Condition
+Check-In	Allowed until 10:30 AM
+Check-Out	Allowed after 5:00 PM
+Duplicate Check-In	Not allowed
+Duplicate Check-Out	Not allowed
+Geofencing	Employee must be within configured office radius
+
+## 📊 Attendance Reports
+
+The dashboard provides attendance reporting features such as:
+
+Today's attendance
+Attendance by selected date
+Employee name
+Employee email
+Check-in time
+Check-out time
+Attendance status
+Total employees
+Pending check-outs
+Office locations
+
+## 🔗 REST API Endpoints
+Method	Endpoint	Access	Description
+POST	/auth/login	Public	Login and receive JWT
+GET	/employees	Authenticated	Get all employees
+POST	/employees	ADMIN	Create employee
+PUT	/employees/{id}	ADMIN	Update employee
+DELETE	/employees/{id}	ADMIN	Delete employee
+GET	/departments	Authenticated	Get departments
+POST	/departments	ADMIN	Create department
+GET	/office-locations	Authenticated	Get office locations
+POST	/office-locations	ADMIN	Create office location
+POST	/attendances/check-in	Authenticated	Check in
+POST	/attendances/check-out	Authenticated	Check out
+GET	/attendances/employee/{id}	Authenticated	Get employee attendance
+GET	/attendances/today	ADMIN	Get today's attendance
+GET	/attendances/date/{date}	ADMIN	Get attendance by date
+
+## 🗄️ Database Setup
+
+Create the MySQL database:
 CREATE DATABASE employee_attendance;
-```
 
-4. Configure the Application
-Edit `src/main/resources/application.properties`:
-```properties
+The application uses Hibernate to automatically create and update tables:
+
+spring.jpa.hibernate.ddl-auto=update
+
+## 🚀 Getting Started
+1. Clone the Repository
+git clone https://github.com/Harshi-789/Attendance-Geofencing.git
+cd Attendance-Geofencing
+
+2. Open the Project
+Import the project into Spring Tool Suite (STS) or Eclipse as an existing Maven project.
+
+3. Create the Database
+Open MySQL and run:
+CREATE DATABASE employee_attendance;
+
+4. Configure application.properties
+Open:
+src/main/resources/application.properties
+
+Configure your database credentials:
 spring.datasource.url=jdbc:mysql://localhost:3306/employee_attendance
 spring.datasource.username=root
 spring.datasource.password=YOUR_MYSQL_PASSWORD
@@ -111,74 +285,116 @@ spring.jpa.hibernate.ddl-auto=update
 jwt.secret=YOUR_JWT_SECRET
 
 office.location.id=1
-```
-> **Note:** Replace `YOUR_MYSQL_PASSWORD` and `YOUR_JWT_SECRET` with your own values before running the application.
+
+⚠️ Important: Never upload your actual database password or private JWT secret to GitHub.
 
 5. Run the Application
+
 From STS/Eclipse, run:
-```
 AttendanceGeofencingApplication.java
-```
-Or from the command line:
-```bash
+
+Or run:
+
 mvn spring-boot:run
-```
+6. Open the Application
 
-6. Access the Application
-Open your browser and go to:
-```
+Open your browser:
+
 http://localhost:8080
-```
 
-7. Log In
-Log in with your registered Employee or Admin credentials, then use the dashboard to check in, check out, and view attendance reports.
----
+Login using your registered ADMIN or EMPLOYEE credentials.
 
-## Geofencing
-The system checks the distance between an employee's current coordinates and the configured office location before allowing attendance.
-```
-Employee Location
-        │
-        ▼
-Calculate Distance
-        │
-        ▼
-Compare to Office Radius
-        │
-   ┌────┴────┐
-   ▼         ▼
-Within     Outside
-Radius     Radius
-   │         │
-   ▼         ▼
-Allowed    Rejected
-```
-The active office is set using:
-```properties
-office.location.id=1
-```
----
-## Attendance Flow
-Check-In
-```
-Login → JWT Authentication → Dashboard → Check-In
-   → Validate Employee → Validate Time → Validate Office Location
-   → Attendance Recorded
-```
+## 🧪 API Testing
 
-Check-Out
-```text
-Check-Out → Validate Employee → Validate Time → Validate Office Location
-   → Attendance Completed
-```
----
-## Contributing
-Contributions are welcome. To contribute:
-Fork the repository
-Create a feature branch (`git checkout -b feature/your-feature`)
-Commit your changes (`git commit -m "Add your feature"`)
-Push to the branch (`git push origin feature/your-feature`)
-Open a Pull Request
----
-## License
+The REST APIs can be tested using Postman.
+
+Testing Flow
+1. Login
+      ↓
+2. Receive JWT Token
+      ↓
+3. Copy JWT Token
+      ↓
+4. Add Bearer Token
+      ↓
+5. Call Protected APIs
+      ↓
+6. Verify API Response
+
+Example Authorization:
+Authorization: Bearer <JWT_TOKEN>
+
+## 🔒 Security
+The application implements:
+
+JWT authentication
+BCrypt password hashing
+Role-based authorization
+Protected REST endpoints
+Employee-specific attendance access
+Global exception handling
+Input validation
+Unauthorized request handling
+Resource-not-found handling
+
+##💻 Dashboard
+The web dashboard provides a centralized interface for:
+
+┌──────────────────────────────────────┐
+│       EMPLOYEE ATTENDANCE            │
+│             DASHBOARD                │
+├──────────────────────────────────────┤
+│                                      │
+│  Today's Status                      │
+│  ├── Check-In                        │
+│  ├── Check-Out                       │
+│  └── Attendance Status               │
+│                                      │
+│  Office Location                     │
+│  └── Geofence Information             │
+│                                      │
+│  Employee Management                 │
+│  └── Add / Edit / Delete Employees  │
+│                                      │
+│  Attendance Reports                  │
+│  └── Date-Based Attendance           │
+│                                      │
+└──────────────────────────────────────┘
+
+## 🛡️ Exception Handling
+
+The backend provides centralized exception handling for common API errors.
+Examples include:
+
+400 → Validation / Attendance errors
+401 → Unauthorized request
+403 → Access denied
+404 → Resource not found
+
+This provides consistent and meaningful API responses.
+
+## 🔮 Future Enhancements
+
+Possible future improvements include:
+
+📍 Live browser GPS integration
+📱 Mobile-friendly employee application
+📧 Email notifications
+📊 Advanced attendance analytics
+📅 Monthly and yearly reports
+📥 Excel/PDF report export
+☁️ Cloud deployment
+🔔 Attendance reminders
+🤝 Contributing
+
+Contributions are welcome.
+
+git checkout -b feature/your-feature
+git add .
+git commit -m "Add your feature"
+git push origin feature/your-feature
+
+Then create a Pull Request.
+
+📄 License
 This project is licensed under the MIT License.
