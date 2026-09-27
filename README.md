@@ -4,7 +4,7 @@ A Spring Boot-based Employee Attendance Management System that lets employees ch
 The system provides JWT authentication, role-based access control, employee management, attendance tracking, and reporting through a responsive web dashboard.
 
 ---
-#Table of Contents
+## Table of Contents
 Features
 Tech Stack
 Project Structure
